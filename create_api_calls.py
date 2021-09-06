@@ -4,12 +4,7 @@
 __author__ = "Dipak Warade <dipakvwarade@gmail.com>"
 __copyright__ = "Dipak Warade <dipakvwarade@gmail.com>"
 
-# import subprocess
-# import os
-# import sys
-# import requests
-# import time
-# import datetime
+
 import logging
 from logging.handlers import TimedRotatingFileHandler
 import pandas as pd
@@ -26,20 +21,6 @@ def xls_to_dict(underlay_data_dic,counter):
   data["interface"] = underlay_data_dic["interface"][counter]
   data["project_name"] = underlay_data_dic["Project_name"][counter]
   return data
- #print(data)
-
-#     data = { "token": "961f31b218334698ab9e132d23bd0def",
-#     "switch": "Leaf1",
-#     "interface": "xe-0/0/9_3",
-#     "vlan" : "999",
-#     "interface_display_name" : "xe-0/0/9:3",
-#     "network_name": "dipak_sriov",
-#     "project_name": "vIMS_Project" }
-
-f = open("demofile2.txt", "a")
-f.write("Now the file has more content!")
-f.close()
-
 
 if __name__ == '__main__':
   
@@ -58,5 +39,5 @@ if __name__ == '__main__':
     f_data = xls_to_dict(underlay_data_dic,counter)
     api_call = j2_template.render(f_data)
     logger.info(api_call)
-  
+ 
  
