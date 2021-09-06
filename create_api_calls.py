@@ -41,7 +41,7 @@ f.write("Now the file has more content!")
 f.close()
 
 
-def main(): 
+if __name__ == '__main__':
   
   file_name = "api_calls.txt"
   logHandler = TimedRotatingFileHandler(file_name,when="M",interval=10, backupCount=1000000)
@@ -49,13 +49,14 @@ def main():
   logger.addHandler( logHandler )
   logger.setLevel( logging.INFO )
   
-  j2_template = Template(open('api_template.j2').read())
-  underlay_data_dic = pd.read_excel('sriov_vlan_push_template.xlsx').to_dict()
+  j2_template = Template(open('api_template.j2').read()) # read the j2 template 
+  # read the underlay mapping provided by vendors 
+  underlay_data_dic = pd.read_excel('sriov_vlan_push_template.xlsx').to_dict() 
+
   for i in range(len(underlay_data_dic["Logical_Network"])):
     counter = i
     f_data = xls_to_dict(underlay_data_dic,counter)
     api_call = j2_template.render(f_data)
     logger.info(api_call)
-    
   
-
+ 
