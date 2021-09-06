@@ -20,6 +20,7 @@ def xls_to_dict(underlay_data_dic,counter):
   data["interface_display_name"] = underlay_data_dic["Leaf_port"][counter]
   data["interface"] = underlay_data_dic["interface"][counter]
   data["project_name"] = underlay_data_dic["Project_name"][counter]
+  data["token"] = "$TOKEN"
   return data
 
 if __name__ == '__main__':
