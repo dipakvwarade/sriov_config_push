@@ -1,3 +1,4 @@
-### 1. I eat my favourite template file sriov_vlan_push_template.xlsx
-### 2. I produce Contrails food to speed up your SRIOV config on Juniper Fabric
-### 3. Contact us for more!
+# How it works 
+
+Simple script to generate API calls to push your SRIOV config to Juniper fabric using Contrail 
+The script uses pandas to process the xls and Jinja2 to render the API calls
