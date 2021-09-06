@@ -1,0 +1,100 @@
+""" #**Physical Interface Creation
+
+    curl -X POST \
+      http://192.168.4.5:8082/physical-interfaces \
+      -H 'Cache-Control: no-cache' \
+      -H 'Content-Type: application/json; charset=UTF-8"' \
+      -H 'X-Auth-Token: {{ token }}' \
+      -d '{
+        "physical-interface": {
+            "display_name": "{{ interface }}",
+            "fq_name": [
+                "default-global-system-config",
+                "{{ switch }}",
+                "{{ interface }}"
+            ],
+            "name": "{{ interface }}",
+            "parent_type": "physical-router"
+        }
+    }' 
+    
+   
+   
+#**Virtual Machine Interface
+
+    curl -X POST \
+      http://192.168.4.5:8082/virtual-machine-interfaces \
+      -H 'Content-Type: application/json; charset=UTF-8' \
+      -H 'Cache-Control: no-cache' \
+      -H 'Content-Type: application/json' \
+      -H 'X-Auth-Token: {{ token }}' \
+       -d '{
+      "virtual-machine-interface": {
+        "fq_name": [
+          "default-domain",
+          "{{ project_name }}",
+          "{{ network_name }}"
+        ],
+        "virtual_machine_interface_mac_addresses": {
+          "mac_address": [
+            "00:00:00:00:02:90"
+          ]
+        },
+        "name": "{{ network_name }}_vif",
+        "security_group_refs": [
+          {
+            "to": [
+              "default-domain",
+              "admin",
+              "default"
+            ]
+          }
+        ],
+        "parent_type": "project",
+        "virtual_network_refs": [
+          {
+            "to": [
+              "default-domain",
+              "{{ project_name }}",
+              "{{ network_name }}"
+            ]
+          }
+        ],
+        "virtual_machine_interface_device_owner": "physical-router",
+        "display_name": "{{ network_name }}_v{{ vlan }}_vif"
+      }
+    }'
+ 
+ 
+ #**Logical Interface Creation
+        
+    curl -X POST \
+      http://192.168.4.5:8082/logical-interfaces \
+      -H 'Content-Type: application/json; charset=UTF-8' \
+      -H 'Cache-Control: no-cache' \
+      -H 'Content-Type: application/json' \
+      -H 'X-Auth-Token: {{ token }}' \
+    -d '{
+      "logical-interface": {
+        "fq_name": [
+          "default-global-system-config",
+          "{{ switch }}",
+          "{{ interface }}",
+          "{{ interface }}.{{ vlan }}"
+        ],
+        "logical_interface_vlan_tag": {{ vlan }},
+        "parent_type": "physical-interface",
+        "virtual_machine_interface_refs": [
+          {
+            "to": [
+              "default-domain",
+              "{{ project_name }}",
+              "{{ network_name }}"
+            ]
+          }
+        ],
+        "logical_interface_type": "l2",
+        "display_name": "{{ interface_display_name }}.{{ vlan }}",
+        "name": "{{ interface }}.{{ vlan }}"
+      }
+    }' """
