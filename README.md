@@ -6,5 +6,5 @@ The script uses pandas to process the xls and Jinja2 to render the API calls.
 
 
 # Improvements
-- Verify leaf switch unit [1-3] for service vlans
+- Verify leaf port is in the range [1-3] for service vlans
 - Introduce sleep between calls
