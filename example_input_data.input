@@ -1,7 +1,0 @@
-    data = { "token": "961f31b218334698ab9e132d23bd0def",
-    "switch": "Leaf1",
-    "interface": "xe-0/0/9_3",
-    "vlan" : "999",
-    "interface_display_name" : "xe-0/0/9:3",
-    "network_name": "dipak_sriov",
-    "project_name": "vIMS_Project" }
